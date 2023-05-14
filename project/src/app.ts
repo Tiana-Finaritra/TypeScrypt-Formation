@@ -6,6 +6,7 @@
 // const arrAny: any[] = ["any",5,true,null];
 // const user: {firstname: string, lastname?: string, age: number, tf:boolean} = {firstname: "John",age: 75, tf:true };
 // const date: Date = new Date();
+
 // const cb: Function = (e: MouseEvent) =>{
 
 // };
@@ -14,21 +15,21 @@
 // };
 
 // const compteur = document.querySelector('#compteur') as HTMLButtonElement;
-const compteur = document.querySelector('#compteur') as HTMLInputElement;
+// const compteur = document.querySelector('#compteur') as HTMLInputElement;
 
-let i = 0;
-const increment = (e: Event) =>{
-    i++;
-    if (i > 50) {
-        i += 5;
-    }
-    const span = compteur?.querySelector('span');
-    if (span) {
-       span.innerText = i.toString();
-    }
-}
+// let i = 0;
+// const increment = (e: Event) =>{
+//     i++;
+//     if (i > 50) {
+//         i += 5 * i;
+//     }
+//     const span = compteur?.querySelector('span');
+//     if (span) {
+//        span.innerText = i.toString();
+//     }
+// }
 
-compteur?.addEventListener('click',increment);  
+// compteur?.addEventListener('click',increment);  
 
 // function printId(id: string | number){
 //     if(typeof(id)== "number"){
@@ -67,3 +68,38 @@ compteur?.addEventListener('click',increment);
 // function isDate (a:any):a is Date{
 //     return a instanceof Date
 // }
+
+/* ------------Alias & Generic--------------- */
+// Alias
+type User = {firstname: string, lastname: string};
+const user : User = {firstname: "John", lastname:"Doe"};
+
+type DateString = string;
+const date: DateString = 'dto,';
+
+type ID = string | number;
+
+type Identity<ArgTypei> = (arg: ArgTypei) => ArgTypei;
+type P = keyof User;
+// Generic
+function identity<ArgType>(arg:ArgType):ArgType{
+    return arg;
+}
+
+
+const aa = identity<number>(2);
+
+function first<Type>(args: Type[]):Type{
+    return args[0]; 
+}
+const bb = first (["ajnej","afqskj","jhf"]);
+
+const nex: Array<string | number> = ["aze","ace",3];
+
+//extends 
+function consoleSize<Type extends {length:number}>(arg: Type):Type{
+    console.log(arg.length);
+    return arg;
+}
+
+const abb = consoleSize(['2',5]);

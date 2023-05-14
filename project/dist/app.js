@@ -18,7 +18,7 @@ let i = 0;
 const increment = (e) => {
     i++;
     if (i > 50) {
-        i += 5;
+        i += 5 * i;
     }
     const span = compteur === null || compteur === void 0 ? void 0 : compteur.querySelector('span');
     if (span) {
@@ -26,34 +26,14 @@ const increment = (e) => {
     }
 };
 compteur === null || compteur === void 0 ? void 0 : compteur.addEventListener('click', increment);
-// function printId(id: string | number){
-//     if(typeof(id)== "number"){
-//         console.log((id * 3).toString());
-//     }else{
-//         console.log(id.toLocaleUpperCase());
-//     }
-// }
-// function example(a:string |boolean , b:string | number | null) {
-//     if (a == b) {
-//         a
-//     }
-// }
-// function example2(a:string | Date) {
-//     if (a instanceof Date) {
-//         a
-//     }
-// }
-// function example3(a:string | Date) {
-//     if (Array.isArray(a)) {
-//         return a[0];
-//     }
-//     return 
-// }
-// function exemple4 (a: MouseEvent | HTMLInputElement){
-//     if ("value" in a) {
-//         a
-//     }
-// }
-// function isDate (a:any):a is Date{
-//     return a instanceof Date
-// }
+const user = { firstname: "John", lastname: "Doe" };
+const date = 'dto,';
+// Generic
+function identity(arg) {
+    return arg;
+}
+const aa = identity(2);
+function first(args) {
+    return args[0];
+}
+const bb = first(["ajnej", "afqskj", "jhf"]);
