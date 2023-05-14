@@ -71,35 +71,189 @@
 
 /* ------------Alias & Generic--------------- */
 // Alias
-type User = {firstname: string, lastname: string};
-const user : User = {firstname: "John", lastname:"Doe"};
+// type User = {firstname: string, lastname: string};
+// const user : User = {firstname: "John", lastname:"Doe"};
 
-type DateString = string;
-const date: DateString = 'dto,';
+// type DateString = string;
+// const date: DateString = 'dto,';
 
-type ID = string | number;
+// type ID = string | number;
 
-type Identity<ArgTypei> = (arg: ArgTypei) => ArgTypei;
-type P = keyof User;
-// Generic
-function identity<ArgType>(arg:ArgType):ArgType{
-    return arg;
+// type Identity<ArgTypei> = (arg: ArgTypei) => ArgTypei;
+// type P = keyof User;
+// // Generic
+// function identity<ArgType>(arg:ArgType):ArgType{
+//     return arg;
+// }
+
+
+// const aa = identity<number>(2);
+
+// function first<Type>(args: Type[]):Type{
+//     return args[0]; 
+// }
+// const bb = first (["ajnej","afqskj","jhf"]);
+
+// const nex: Array<string | number> = ["aze","ace",3];
+
+// //extends 
+// function consoleSize<Type extends {length:number}>(arg: Type):Type{
+//     console.log(arg.length);
+//     return arg;
+// }
+
+// const abb = consoleSize(['2',5]);
+
+
+/*======================= Class =======================*/
+// function reverse<T> (arr: readonly T[]): T[] {
+//     return [...arr].reverse();
+// }
+
+// class A {
+//     private a = 3;
+//     log (){
+//         console.log(this.a)
+//     }
+// }
+
+
+//Visibility: public, protected, private
+// class A {
+//     protected a = 4;
+
+//     log (){
+//         console.log(this.a)
+//     }
+// }
+
+// class B extends A {
+//     log (){
+//         console.log(this.a)
+//     } 
+// }
+
+// const aInstance = new A();
+// // console.log(aInstance.a);
+// aInstance.log();
+
+//constructor
+
+// class C {
+//     constructor(c)(
+//        public c:number;
+//     ){
+
+//     }
+// }
+
+// class Collection <T>{
+//     constructor(private  items:T[]){
+        
+//     }
+//     add(item:T){
+//         this.items.push(item);
+//         return this;
+//     }
+
+//     first(): T | null{
+//         return this.items[0] || null
+//     }
+
+//     isEqual(a: this){
+//         return a.items === this.items
+//     }
+// } 
+
+// class SubCollection<T> extends Collection<T>{
+//     a = 3
+// }
+// const a = new Collection(["aze",2]);
+// const d = new Collection([1,2]);
+// a.isEqual(d);
+// const b = a.first();
+// const e = a.first();
+// const c = a.add(3);
+
+// class Subscriber {
+//     on (this: HTMLInputElement, name: string , cb: Function){
+//         this.
+//     }
+// }
+
+
+// class Subscriber{
+//     on = (name:string, cb:Function) =>{
+
+//     }
+// }
+
+
+// ++++++++++++++++++Example with class:
+class Point{
+    x = 0;
+    y = 0;
+}
+
+class Geometry{
+    x = 0;
+    y = 0;
+    surface = 0;
+}
+
+function getX(p: Point){
+    return p.x;
+}
+
+getX(new Geometry()); 
+
+abstract class Geometry2{
+    x  = 0;
+    y = 0;
+    abstract surface (): number
+}
+
+class Triangle extends Geometry2{
+    x = 0;
+    y = 0;
+    surface (){
+        return 3;
+    }
+}
+
+//Methode static:
+abstract class Geometry3{
+    static #origin :{x: number, y: number};
+    static {
+        Geometry3.#origin = {x: 0, y: 0}
+    }
 }
 
 
-const aa = identity<number>(2);
 
-function first<Type>(args: Type[]):Type{
-    return args[0]; 
+class Geometry4{
+    static origin: {x:number, y:number} = {x:0,y:0};
+    constructor(x: number , y: number ){
+
+    }
 }
-const bb = first (["ajnej","afqskj","jhf"]);
+class Triangle2{
+    constructor(x: number , y: number ){
 
-const nex: Array<string | number> = ["aze","ace",3];
-
-//extends 
-function consoleSize<Type extends {length:number}>(arg: Type):Type{
-    console.log(arg.length);
-    return arg;
+    }
+    surface () {
+        return 3
+    }
+}
+type InstansiableShape = {
+    new (x:number,y: number): {
+        surface:() => number
+    }
 }
 
-const abb = consoleSize(['2',5]);
+function shapeGenerator (shapeType: InstansiableShape, x: number, y: number){
+    return new shapeType(x,y);
+}
+
+// shapeGenerator(Geometry4,10,20);
+shapeGenerator(Triangle2,10,20);
